@@ -6,6 +6,10 @@ function config(locationProvider, stateProvider, urlRouterProvider) {
         url:'/home',
         template: '<home></home>'
     })
+    .state('login',{
+        url:'/login',
+        template:"<login></login>"
+    })
     .state('calendar', {
         url: '/calendar',
         template: '<calendar></calendar>'
