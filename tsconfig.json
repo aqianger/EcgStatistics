@@ -6,5 +6,12 @@
     "sourceMap": true,
     "removeComments": false,
     "noImplicitAny": false
-  }
+  },
+  "exclude": [
+    "node_moudles",
+    "plugins",
+    "documentation",
+    "pages",
+    "dist"
+]
 }

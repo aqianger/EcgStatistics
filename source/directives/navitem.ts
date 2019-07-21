@@ -1,4 +1,4 @@
-import MyService from './../services/my.service';
+import MyService from '../services/api.service';
 
 export default class navItem {
     

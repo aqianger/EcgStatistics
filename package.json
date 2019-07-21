@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run lite",
+    "build": "webpack",
     "lite": "lite-server",
     "postinstall": "typings install"
   },
@@ -17,12 +18,15 @@
     "bootstrap": "^3.3.6",
     "es6-shim": "^0.35.1",
     "jquery": "^2.2.4",
-    "systemjs": "^0.19.31",
-    "typescript": "^1.8.10"
+    "systemjs": "^0.19.31"
   },
   "devDependencies": {
     "lite-server": "^2.2.2",
     "systemjs-builder": "^0.15.23",
-    "typings": "^1.3.1"
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "typings": "^1.3.1",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   }
 }

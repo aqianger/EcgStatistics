@@ -1,4 +1,4 @@
-import MyService from './services/my.service';
+import MyService from './services/api.service';
 
 let mod = angular.module('services', []);
 
