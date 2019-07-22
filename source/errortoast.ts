@@ -1,4 +1,4 @@
-import bootoast from './common/bootoast.d';
+declare let bootoast:any;
  function errortoast(msg:string){
     console.log("error---------------" + msg);
     bootoast({ 

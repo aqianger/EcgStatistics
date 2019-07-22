@@ -107,4 +107,4 @@ export default class ApiService {
     }
 }
 
-ApiService.$inject = ['$http','$rootScope', '$q', 'Functions', '$state'];
+ApiService.$inject = ['$http','$rootScope', '$q',  '$state'];

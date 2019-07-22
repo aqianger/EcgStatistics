@@ -1,8 +1,8 @@
-import MyService from '../services/api.service';
-
+//import ApiService from './../services/api.service';
+import MyService from './../services/my.service';
 export default class navItemInnerRich {
     
-    constructor(private myService: MyService, scope){
+    constructor(private myService:MyService,/*private apiService:ApiService,*/ scope){
         
     }
     do(){
@@ -29,4 +29,4 @@ export default class navItemInnerRich {
     }
 }
 
-navItemInnerRich.$inject = ['myService', '$scope'];
+navItemInnerRich.$inject = ['myService','$scope'];

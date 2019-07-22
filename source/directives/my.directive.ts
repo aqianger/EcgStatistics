@@ -1,12 +1,12 @@
-import MyService from '../services/api.service';
-
+//import ApiService from '../services/api.service';
+import MyService from './../services/my.service';
 export default class MyDirective {
     
-    constructor(private myService: MyService, scope){
+    constructor(private myService:MyService,scope){
         
     }
     do(){
-        this.myService.do();
+       this.myService.do();
     }
     static Link(scope, element, attrs){
         element.css({color:'red'});
