@@ -358,3 +358,4 @@
 
 	return exports;
 }));
+window.console.log(bootoast);

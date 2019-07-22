@@ -3,8 +3,9 @@ import errortoast from '../errortoast';
 export default class ApiService {
     server_url="http://localhost:4000";
 
-    constructor(private http,private $q:ng.IQService,private $rootScope:any){
-
+    constructor(private http,private $q:ng.IQService,private $rootScope:any,private $state:any){
+console.log(this.$rootScope);
+console.log(this.$state);
     }
     do(){
         console.log(this.http);
@@ -12,8 +13,8 @@ export default class ApiService {
     }
 
     exec(reqitem:RequestModel, param:any){
-        let delay = this.$q.defer();
-
+        var delay = this.$q.defer();
+let rootScope=this.$rootScope;
         let ToUrl =reqitem.url;
         let CData = null;
        let CType;
@@ -46,7 +47,7 @@ export default class ApiService {
         }
         console.log("call api :" + ToUrl+":"+JSON.stringify(CData));
 
-      this.$rootScope.loading = true;
+        rootScope.loading = true;
         var promise = this.http({
                 url: this.server_url + ToUrl,
                 method: method,
@@ -61,10 +62,10 @@ export default class ApiService {
             .then(function(response) {
                 console.log("response:" + JSON.stringify(response));
                 delay.resolve(response.data);
-                this.$rootScope.loading = false;
+                rootScope.loading = false;
             }, function(err) {
                 //console.log(error.statusText + error.status);
-                if (err.status == 401) {
+                if (err.code == 401) {
                     console.log("401 error,go autologin");
                   
                                    this.http({
@@ -80,18 +81,17 @@ export default class ApiService {
                                         .then(function(response) {
                                             console.log("response:" + JSON.stringify(response));
                                             delay.resolve(response.data);
-                                            this.$rootScope.loading = false;
+                                            rootScope.loading = false;
                                         }, function(err) {
-                                            delay.reject(err.statusText);
-                                            this.$rootScope.loading = false;
+                                            delay.reject(err.message);
+                                            rootScope.loading = false;
                                         });                       
                 } else {
-                    this.$rootScope.loading = false;
-                    delay.reject(err.statusText);
+                    rootScope.loading = false;
+                    delay.reject(err.message);
                     //alert(error.statusText + ":" + error.data.ExceptionMessage);
-                    if (err.status != 0) {
-
-                        errortoast("请求服务器错误:status=" + err.status + "," + err.statusText);
+                    if (err.code != 0) {
+                        errortoast("请求服务器错误:code=" + err.code + "," + err.message);
                     } else {
                         errortoast("无法连接服务器,请检查网络设置");
                     }
@@ -107,4 +107,4 @@ export default class ApiService {
     }
 }
 
-ApiService.$inject = ['$http','$rootScope', '$q',  '$state'];
+ApiService.$inject = ['$http','$q', '$rootScope',  '$state'];

@@ -1,7 +1,6 @@
-declare let bootoast:any;
  function errortoast(msg:string){
     console.log("error---------------" + msg);
-    bootoast({ 
+    window.bootoast.toast({ 
         message: msg, 
         type: 'danger', 
         position:'right-bottom', 

@@ -19,3 +19,4 @@ console.log(result);
         };
     }
 }
+LoginComponent.$inject = ['apiService', '$scope'];
