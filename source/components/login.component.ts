@@ -7,7 +7,7 @@ export default class LoginComponent {
     }
 
     $onInit(){
-        this.api.exec(ApiConfig.login,{id:1}).then(function(result){
+        this.api.exec(ApiConfig.Login,{id:1}).then(function(result){
 console.log(result);
         })
     }

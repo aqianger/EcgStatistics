@@ -1,7 +1,7 @@
 import {RequestModel,ApiFuncs} from '../model/requestmodel';
 import errortoast from '../errortoast';
 export default class ApiService {
-    server_url="http://localhost:4000";
+    server_url="http://192.168.25.170:64580/api/";
 
     constructor(private http,private $q:ng.IQService,private $rootScope:any,private $state:any){
 console.log(this.$rootScope);
@@ -65,7 +65,7 @@ let rootScope=this.$rootScope;
                 rootScope.loading = false;
             }, function(err) {
                 //console.log(error.statusText + error.status);
-                if (err.code == 401) {
+                if (err.status==401 || err.code == 401) {
                     console.log("401 error,go autologin");
                   
                                    this.http({
@@ -90,8 +90,8 @@ let rootScope=this.$rootScope;
                     rootScope.loading = false;
                     delay.reject(err.message);
                     //alert(error.statusText + ":" + error.data.ExceptionMessage);
-                    if (err.code != 0) {
-                        errortoast("请求服务器错误:code=" + err.code + "," + err.message);
+                    if (err.status != 0) {
+                        errortoast("请求服务器错误:status=" + err.status + "," + err.statusText);
                     } else {
                         errortoast("无法连接服务器,请检查网络设置");
                     }

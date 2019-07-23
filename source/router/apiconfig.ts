@@ -1,7 +1,11 @@
- const  ApiConfig:any={
-    "login":{
-        url:"http://localhost:55398/api/Test/sss",
-        method:"get"
+ import RequestModel from './../model/requestmodel'
+ export class ApiConfig{
+     public Login:RequestModel;
+    constructor(){
+        this.Login=new RequestModel();
+this.Login.url="values";
+this.Login.method="get";
     }
-};
-export default ApiConfig;
+ }
+
+export default new ApiConfig();
