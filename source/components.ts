@@ -8,10 +8,11 @@ import HomeComponent from './components/home.component';
 import CalendarComponent from './components/calendar.component';
 import Loginlayer from './components/loginlayer.component';
 import Login from './components/login.component';
-
-
+import Overall from './components/overall.component';
+import Regional from './components/regional.component';
+import mod from './services';
 // module
-let mod = angular.module('components', []);
+//let mod = angular.module('xStatistics', []);
 mod.component('appcontainer', AppcontainerComponent.Factory());
 mod.component('app', AppComponent.Factory());
 mod.component('header', HeaderComponent.Factory());
@@ -22,5 +23,6 @@ mod.component('home', HomeComponent.Factory());
 mod.component('calendar', CalendarComponent.Factory());
 mod.component('loginlayer',Loginlayer.Factory());
 mod.component("login",Login.Factory());
-
+mod.component("overall",Overall.Factory());
+mod.component("regional",Regional.Factory());
 export default mod;

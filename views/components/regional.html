@@ -1,0 +1,21 @@
+<section class="content-header">
+	<h1>
+		区域检查申请统计
+		<small>各个医院在某一时间段的检查总量</small>
+	</h1>
+	<ol class="breadcrumb">
+		<!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
+		<li class="active">home</li>
+	</ol>
+</section>
+<!-- Main content -->
+<section class="content">
+	<!-- Your Page Content Here -->
+	<table><tr ng-repeat="item in $ctrl.items">
+        <td>{{x.DepartName}}</td>
+        <td>{{x.DiagNum}}</td>
+    </tr>
+    </table>
+    <echarts options="options" height="30rem"></echarts>
+</section>
+<!-- /.content -->

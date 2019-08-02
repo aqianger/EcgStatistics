@@ -1,7 +1,7 @@
 import {RequestModel,ApiFuncs} from '../model/requestmodel';
 import errortoast from '../errortoast';
 export default class ApiService {
-    server_url="http://192.168.25.170:64580/api/";
+    server_url="http://192.168.25.170:22534/Statistic/";
 
     constructor(private http,private $q:ng.IQService,private $rootScope:any,private $state:any){
 console.log(this.$rootScope);
@@ -61,7 +61,14 @@ let rootScope=this.$rootScope;
             })
             .then(function(response) {
                 console.log("response:" + JSON.stringify(response));
-                delay.resolve(response.data);
+                var result=response.data;
+                                            if(result.Code!=0){
+                                                errortoast(result.Message);
+                                                delay.reject(result.Message);
+                                            }
+                                            else{
+                                            delay.resolve(JSON.parse(result.Data));
+                                            }
                 rootScope.loading = false;
             }, function(err) {
                 //console.log(error.statusText + error.status);
@@ -80,7 +87,14 @@ let rootScope=this.$rootScope;
                                         })
                                         .then(function(response) {
                                             console.log("response:" + JSON.stringify(response));
-                                            delay.resolve(response.data);
+                                            var result=response.data;
+                                            if(result.Code!=0){
+                                                errortoast(result.Message);
+                                                delay.reject(result.Message);
+                                            }
+                                            else{
+                                            delay.resolve(JSON.parse(result.Data));
+                                            }
                                             rootScope.loading = false;
                                         }, function(err) {
                                             delay.reject(err.message);

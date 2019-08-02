@@ -1,0 +1,23 @@
+<section class="content-header">
+	<h1>
+		总概览
+		<small>上线以来的所有数据</small>
+	</h1>
+	<ol class="breadcrumb">
+		<!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
+		<li class="active">home</li>
+	</ol>
+</section>
+<!-- Main content -->
+<section class="content">
+	<!-- Your Page Content Here -->
+	<ul>
+        <li><a title="五院+社区医院总量" href="javascript:void(0);">医院数量：</a>{{$ctrl.total_hospital}}</li>
+        <li><a title="已诊断申请单总量" href="javascript:void(0);">检查总量：</a>{{$ctrl.total_diagnosis}}</li>
+        <li><a title="已会诊总量" href="javascript:void(0);">请求远程诊断总量：</a>{{$ctrl.total_consultations}}</li>
+        <li><a title="结论不包含“正常”/总量" href="javascript:void(0);">阳性率：</a>{{$ctrl.ratio_positive|number:2}}%</li>
+        <li><a title="设备表总数量" href="javascript:void(0);">设备总量：</a>{{$ctrl.total_devices}}</li>
+    </ul>
+    
+</section>
+<!-- /.content -->

@@ -30,13 +30,16 @@
 	<script src="node_modules/typescript/lib/typescript.js"></script>
 	<script src="node_modules/systemjs/dist/system.js"></script>
 	<script src="dist/js/bootoast.js"></script>
+
 	<script>
 		System.config({
 			transpiler: 'typescript',
+			map:{'echarts':'node_modules/echarts/dist/echarts.js'},
 			packages: {
 				source: {
 					defaultExtension: 'ts'
-				}
+				},
+				'echarts':{ defaultExtension: 'js' },
 			}
 		});
 		System.import('/source/main');

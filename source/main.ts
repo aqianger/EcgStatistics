@@ -3,7 +3,7 @@ import directives from './directives';
 import services from './services';
 import config from './config';
 
-let app = angular.module('EcgStatistics', ['ui.router']);
+let app = services;
 
 app.config(config);
 
