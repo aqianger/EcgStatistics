@@ -1,6 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
-export default class RegionalComponent {
+export default class ConsultationComponent {
     readonly seriesTitle:string="区域检查申请统计";
     items:any[]=[];
   /**
@@ -27,9 +27,8 @@ export default class RegionalComponent {
 
     $onInit() {
         let self = this;
-        this.api.exec(ApiConfig.StatisticsRegional, {}).then(function (result: any) {
+        this.api.exec(ApiConfig.StatisticsConsultation, {}).then(function (result: any) {
            // console.log(result,self.$scope);
-
             self.items=result as any[];
             var hotnames=[];
             var itemValues=[];
@@ -69,9 +68,9 @@ export default class RegionalComponent {
                 }*/
     static Factory() {
         return {
-            controller: RegionalComponent,
-            templateUrl: 'views/components/regional.html'
+            controller: ConsultationComponent,
+            templateUrl: 'views/components/consultation.html'
         };
     }
 }
-RegionalComponent.$inject = ['apiService', '$scope'];
+ConsultationComponent.$inject = ['apiService', '$scope'];

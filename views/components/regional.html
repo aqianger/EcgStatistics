@@ -10,12 +10,23 @@
 </section>
 <!-- Main content -->
 <section class="content">
-	<!-- Your Page Content Here -->
-	<table><tr ng-repeat="item in $ctrl.items">
-        <td>{{x.DepartName}}</td>
-        <td>{{x.DiagNum}}</td>
-    </tr>
+    <searchpanel></searchpanel>
+    <!-- Your Page Content Here -->
+    <table style="width:100%;">
+        <tr>
+            <td style="width: 30%;vertical-align: top;">
+                <table><tr ng-repeat="item in $ctrl.items">
+                    <td>{{item.DepartName}}</td>
+                    <td>{{item.DiagNum}}</td>
+                </tr>
+                </table>
+            </td>
+            <td>
+                <echarts options="options" height="60rem"></echarts>
+            </td>
+        </tr>
     </table>
-    <echarts options="options" height="30rem"></echarts>
+	
+    
 </section>
 <!-- /.content -->
