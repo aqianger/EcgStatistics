@@ -1,19 +1,26 @@
-<div>
-    <label><input type="radio" name="selType" ng-click="SetSelTypes()" ng-value="1" ng-model="selTypes">按年</label>
-    <label><input type="radio" name="selType" ng-click="SetSelTypes()" ng-value="2" ng-model="selTypes">按月</label>
-    <label><input type="radio" name="selType" ng-click="SetSelTypes()" ng-value="3" ng-model="selTypes">自定义</label>
-    <div class="datepanel" ng-if="selTypes==1||selTypes==2">
-        <select class="startDate" ng-model="SelstartDate" ng-options="sd.name as sd.name for sd in startDates">
-        </select>至<select class="endDate" ng-model="SelendDate" ng-options="ed.name as ed.name for ed in endDates"></select>
+<div style="width:100%;">
+    <div style="float:left;">
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="1" ng-model="SearchPancelCtrl.selTypes">按年</label>
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="2" ng-model="SearchPancelCtrl.selTypes">按月</label>
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="3" ng-model="SearchPancelCtrl.selTypes">自定义</label>
     </div>
-    <div class="datepanel" ng-if="selTypes==3">
-        <datepicker date-month-title="selected year" date-year-title="selected title">
-            <input ng-model="selstartdate"/>
-        </datepicker>
-        至
-        <datepicker date-month-title="selected year" date-year-title="selected title">
-            <input ng-model="selenddate"/>
+    <div style="float:left;min-width: 800px; margin-left: 20px;">
+    <div class="ympanel" ng-if="SearchPancelCtrl.selTypes==1||SearchPancelCtrl.selTypes==2">
+        <select class="startDate" ng-model="SearchPancelCtrl.SelstartDate" ng-options="sd.name as sd.name for sd in SearchPancelCtrl.startDates">
+        </select>至<select class="endDate" ng-model="SearchPancelCtrl.SelendDate" ng-options="ed.name as ed.name for ed in SearchPancelCtrl.endDates"></select>
+    </div>
+    <div class="datepanel" ng-if="SearchPancelCtrl.selTypes==3">
+        <div class="datecontainer">
+        <datepicker date-month-title="selected year" date-format="yyyy-MM-dd" date-year-title="selected title">
+            <input ng-model="SearchPancelCtrl.selstartdate"/>至
+        </datepicker></div>
+        <div class="datecontainer">
+        <datepicker date-month-title="selected year" date-format="yyyy-MM-dd" date-year-title="selected title">
+            <input ng-model="SearchPancelCtrl.selenddate"/>
         </datepicker>
     </div>
-    <button class="btnconfirm" ng-click="Statistics()">确认</button>
+    </div>
+    <button class="btnconfirm" ng-click="SearchPancelCtrl.Statistics()">确认</button>
+</div>
+<div style="clear: both;"></div>
 </div>

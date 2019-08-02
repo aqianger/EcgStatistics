@@ -1,0 +1,12 @@
+.datepanel{
+ width:400px;
+    float: left;
+}
+.datepanel .datecontainer{
+    max-width: 250px;
+    float: left;
+}
+.ympanel{
+    width:200px;
+    float: left;
+}

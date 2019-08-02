@@ -14,7 +14,8 @@ export default class SearchPanel {
     }
     SetSelTypes(){
        let td:Date =new Date();
-switch(this.selTypes){
+       console.log(this.selTypes);
+switch(this.selTypes+""){
     case "1":
            this.startDates=[];this.endDates=[];
         for(let x:number=td.getFullYear();x>=2015; x--){
@@ -28,10 +29,12 @@ switch(this.selTypes){
         break;
         case "2":
      let minDate:Date=new Date( td.setMonth(td.getMonth()-12));
+    // console.log(minDate);
      this.startDates=[];this.endDates=[];
-     for(let x:Date=td;x>=minDate;x=new Date(x.setMonth(x.getMonth()-1))){
-         let name:string=x.getFullYear()+x.getMonth()>8?(x.getMonth()+1).toString():'0'+(x.getMonth()+1).toString();
-         let value:string=x.getFullYear()+'-'+(x.getMonth()+1).toString()+'1';
+     for(let x:Date=new Date();x>=td;x.setMonth(x.getMonth()-1)){
+         console.log(x);
+         let name:string=x.getFullYear().toString()+(x.getMonth()>8?(x.getMonth()+1).toString():'0'+(x.getMonth()+1).toString());
+         let value:string=x.getFullYear().toString()+'-'+(x.getMonth()+1).toString()+'-1';
          let item:SelectItemModel=new SelectItemModel(name,value);
          this.startDates.push(item);
          this.endDates.push(item);
@@ -45,7 +48,7 @@ this.SelendDate=this.endDates[0].value;
                 default:
                     return;
 }
-
+console.log(this.startDates);
     }
   
     static Link(scope, element, attrs){
@@ -54,7 +57,7 @@ this.SelendDate=this.endDates[0].value;
     static Factory(){
         return {
             scope: {
-                name: '='
+                name: '=',
             },
             link: SearchPanel.Link,
             controller: SearchPanel,

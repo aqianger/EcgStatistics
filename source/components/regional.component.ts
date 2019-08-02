@@ -27,6 +27,7 @@ export default class RegionalComponent {
 
     $onInit() {
         let self = this;
+        return;
         this.api.exec(ApiConfig.StatisticsRegional, {}).then(function (result: any) {
            // console.log(result,self.$scope);
 
