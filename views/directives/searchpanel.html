@@ -13,11 +13,11 @@
     </div>
     <div class="datepanel" ng-if="SearchPancelCtrl.selTypes==3">
         <div class="datecontainer">
-        <datepicker date-month-title="selected year" date-format="yyyy-MM-dd" date-year-title="selected title">
+        <datepicker date-month-title="selected year" datetitles-Cn="{{SearchPancelCtrl.datetitles}}"  date-format="yyyy-MM-dd" date-year-title="selected title">
             <input ng-model="SearchPancelCtrl.selstartdate"/>至
         </datepicker></div>
         <div class="datecontainer">
-        <datepicker date-month-title="selected year" date-format="yyyy-MM-dd" date-year-title="selected title">
+        <datepicker date-month-title="selected year" datetitles-Cn="{{SearchPancelCtrl.datetitles}}" date-format="yyyy-MM-dd" date-year-title="selected title">
             <input ng-model="SearchPancelCtrl.selenddate"/>
         </datepicker>
     </div>
