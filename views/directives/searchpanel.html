@@ -6,8 +6,10 @@
     </div>
     <div style="float:left;min-width: 800px; margin-left: 20px;">
     <div class="ympanel" ng-if="SearchPancelCtrl.selTypes==1||SearchPancelCtrl.selTypes==2">
-        <select class="startDate" ng-model="SearchPancelCtrl.SelstartDate" ng-options="sd.name as sd.name for sd in SearchPancelCtrl.startDates">
-        </select>至<select class="endDate" ng-model="SearchPancelCtrl.SelendDate" ng-options="ed.name as ed.name for ed in SearchPancelCtrl.endDates"></select>
+        <select class="startDate" ng-change="SearchPancelCtrl.startDateChanged()" ng-model="SearchPancelCtrl.SelstartDate"
+        ng-options="s as s.name for s in SearchPancelCtrl.startDates track by s.name" >
+        </select>至<select class="endDate" ng-change="SearchPancelCtrl.endDateChanged()" ng-model="SearchPancelCtrl.SelendDate" 
+        ng-options="ed as ed.name for ed in SearchPancelCtrl.endDates track by ed.name"></select>
     </div>
     <div class="datepanel" ng-if="SearchPancelCtrl.selTypes==3">
         <div class="datecontainer">
