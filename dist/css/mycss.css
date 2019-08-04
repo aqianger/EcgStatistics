@@ -10,3 +10,7 @@
     width:200px;
     float: left;
 }
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+    background:red;
+    color:white;
+  }

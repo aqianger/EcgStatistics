@@ -364,7 +364,7 @@
           ,setLanguage=function setLanguage(){
             $scope.dateTitles=JSON.parse($scope.datetitlesCn);
             //console.log(typeof $scope.datetitlesCn);
-            console.log(JSON.parse($scope.datetitlesCn),$scope.dateTitles.month);
+           // console.log(JSON.parse($scope.datetitlesCn),$scope.dateTitles.month);
             $scope.month = $filter('date')(new Date($scope.dateMinLimit), 'MMMM');
             if($scope.dateTitles ){
               if($scope.dateTitles.month){
@@ -372,7 +372,7 @@
               }
               if($scope.dateTitles.week){
                 $scope.daysInString = $scope.daysInString.map(function mappingFunc(el) {
-                  console.log(typeof el);
+                 // console.log(typeof el);
                   if(typeof el==="string"){
                  return   $scope.dateTitles.week[el];
                   }

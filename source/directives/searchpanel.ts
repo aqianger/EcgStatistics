@@ -17,6 +17,36 @@ export default class SearchPanel {
     "week":{"Sun":"日","Mon":"一","Tue":"二","Wed":"三","Thu":"四","Fri":"五","Sat":"六"
  }};
     }
+    $onInit(){
+        let self=this;
+        this.scope.$watch('SearchPancelCtrl.selstartdate', function (value) {
+            var  liveDate=null;
+            try {
+             liveDate = new Date(value);
+            } catch(e) {}
+            if (!self.isValidDate(liveDate)) {
+                self.selstartdate=undefined;
+              self.scope.error = "This is not a valid date";
+            } else {
+              self.scope.error = "";
+            }
+          });
+          this.scope.$watch('SearchPancelCtrl.selenddate', function (value) {
+            var  liveDate=null;
+            try {
+             liveDate = new Date(value);
+            } catch(e) {}
+            if (!self.isValidDate(liveDate)) {    
+                self.selenddate=undefined;
+              self.scope.error = "This is not a valid date";
+            } else {
+              self.scope.error = "";
+            }
+          });
+    }
+    isValidDate(date) {
+        return date instanceof Date && !isNaN(date.getTime())
+      }
     SetSelTypes(){
        let td:Date =new Date();
       // console.log(this.selTypes);

@@ -111,7 +111,7 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-day:hover,
 ._720kb-datepicker-calendar-day._720kb-datepicker-active {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.3);
 }
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
   text-decoration:none;
