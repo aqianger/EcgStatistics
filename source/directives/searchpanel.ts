@@ -4,18 +4,19 @@ import SelectItemModel from './../model/SelectItemModel';
 export default class SearchPanel {
     startDates:SelectItemModel[];
     endDates:SelectItemModel[];
-    selTypes:string;
+    selTypes:Number;
     SelstartDate:SelectItemModel;
     SelendDate:SelectItemModel;
     selstartdate:Date;
     selenddate:Date;
     datetitles:any;
     constructor(private scope:any){
-        this.selTypes="1";//默认按年统计
+        this.selTypes=1;//默认按年统计
         this.datetitles={"month":{"January":"一月","February":"二月","March":"三月","April":"四月","May":"五月","June":"六月","July":"七月",
         "August":"八月","September":"九月","October":"十月","November":"十一月","December":"十二月"},
     "week":{"Sun":"日","Mon":"一","Tue":"二","Wed":"三","Thu":"四","Fri":"五","Sat":"六"
  }};
+ this.SetSelTypes();
     }
     $onInit(){
         let self=this;
@@ -130,7 +131,18 @@ case "3":
         console.log(this.SelendDate);
     }
     Statistics(){
-        console.log(this.selTypes,this.SelstartDate,this.SelendDate);
+        console.log(this.selTypes,this.SelstartDate,this.SelendDate,this.selstartdate,this.selenddate);
+        if(this.scope.$parent && this.scope.$parent.Statistics)
+        switch(this.selTypes+"")
+        {
+            case "1":
+            case "2":
+                    this.scope.$parent.Statistics(this.SelstartDate,this.SelendDate);
+                break;
+                case "3":
+                        this.scope.$parent.Statistics(this.selstartdate,this.selenddate);
+                  break;  
+        }
     }
     static Link(scope, element, attrs){
         element.css({color:'red'});
