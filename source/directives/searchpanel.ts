@@ -44,6 +44,7 @@ export default class SearchPanel {
               self.scope.error = "";
             }
           });
+          self.Statistics();
     }
     isValidDate(date) {
         return date instanceof Date && !isNaN(date.getTime())
@@ -131,16 +132,16 @@ case "3":
         console.log(this.SelendDate);
     }
     Statistics(){
-        console.log(this.selTypes,this.SelstartDate,this.SelendDate,this.selstartdate,this.selenddate);
-        if(this.scope.$parent && this.scope.$parent.Statistics)
+        let parentscopt=this.scope.$parent.$ctrl;//.$parent;
+        if( parentscopt&& parentscopt.Statistics)
         switch(this.selTypes+"")
         {
             case "1":
             case "2":
-                    this.scope.$parent.Statistics(this.SelstartDate,this.SelendDate);
+                    parentscopt.Statistics(this.SelstartDate.value,this.SelendDate.value);
                 break;
                 case "3":
-                        this.scope.$parent.Statistics(this.selstartdate,this.selenddate);
+                        parentscopt.Statistics(this.selstartdate,this.selenddate);
                   break;  
         }
     }

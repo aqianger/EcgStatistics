@@ -3,6 +3,7 @@ import ApiConfig from '../router/apiconfig';
 export default class RegionalComponent {
     readonly seriesTitle:string="区域检查申请统计";
     items:any[]=[];
+
   /**
    * 
   0: {DepartName: "区长生桥镇卫生院", DiagNum: 11554}
@@ -26,42 +27,44 @@ export default class RegionalComponent {
     }
 
     $onInit() {
+console.log(this.$scope);
+    }
+    Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
-        return;
-        this.api.exec(ApiConfig.StatisticsRegional, {}).then(function (result: any) {
-           // console.log(result,self.$scope);
-
-            self.items=result as any[];
-            var hotnames=[];
-            var itemValues=[];
-            for(var i=0;i<self.items.length;i++){
-                hotnames.push(self.items[i].DepartName);
-                itemValues.push(self.items[i].DiagNum);
-            }
-            
-              // 指定图表的配置项和数据
-        self.$scope.options = {
-            title: {
-                text: '区域检查申请统计图'
-            },
-            tooltip: {},
-            legend: {
-                data:['检查数量']
-            },
-            
-            xAxis: {
-      
-            },
-            yAxis: {
-                data: hotnames,
-            },
-            series: [{
-                name: '检查数量',
-                type: 'bar',
-                data: itemValues
-            }]
-        };
-        });
+        this.api.exec(ApiConfig.StatisticsRegional, {startDate:startDate, endDate:endDate}).then(function (result: any) {
+            // console.log(result,self.$scope);
+ 
+             self.items=result as any[];
+             var hotnames=[];
+             var itemValues=[];
+             for(var i=0;i<self.items.length;i++){
+                 hotnames.push(self.items[i].DepartName);
+                 itemValues.push(self.items[i].DiagNum);
+             }
+             
+               // 指定图表的配置项和数据
+         self.$scope.options = {
+             title: {
+                 text: '区域检查申请统计图'
+             },
+             tooltip: {},
+             legend: {
+                 data:['检查数量']
+             },
+             
+             xAxis: {
+       
+             },
+             yAxis: {
+                 data: hotnames,
+             },
+             series: [{
+                 name: '检查数量',
+                 type: 'bar',
+                 data: itemValues
+             }]
+         };
+         });
     }
 /*         
                 axisLabel:{
