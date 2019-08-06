@@ -42,12 +42,18 @@ export default class DrWorkloadComponent {
              legend: {
                  data:['诊断数量']
              },
-             
+             grid: {
+                              x: 250,
+                             x2: 50,
+                              y2: 50
+                     },
              xAxis: {
        
              },
              yAxis: {
                  data: hotnames,
+                 offset:0,
+                 nameLocation:"middle"
              },
              series: [{
                  name: '诊断数量',
