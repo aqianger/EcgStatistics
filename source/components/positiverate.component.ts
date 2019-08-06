@@ -1,11 +1,12 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
-export default class ConsultationComponent {
-    readonly seriesTitle:string="区域检查申请统计";
+export default class PositiveRateComponent {
+    readonly seriesTitle:string="阳性率统计";
     items:any[]=[];
+
   /**
    * 
-  {"DepartName":"区迎龙镇卫生院","totalConsult":6},
+ \"DepartName\":\"区广阳镇卫生院\",\"positiverate\":100.00
    */
   /**
    * 
@@ -17,11 +18,11 @@ export default class ConsultationComponent {
     }
 
     $onInit() {
-        
+
     }
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
-        this.api.exec(ApiConfig.StatisticsConsultation, {startDate:startDate, endDate:endDate}).then(function (result: any) {
+        this.api.exec(ApiConfig.StatisticsPositiveRate, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
  
              self.items=result as any[];
@@ -29,17 +30,17 @@ export default class ConsultationComponent {
              var itemValues=[];
              for(var i=0;i<self.items.length;i++){
                  hotnames.push(self.items[i].DepartName);
-                 itemValues.push(self.items[i].totalConsult);
+                 itemValues.push(self.items[i].positiverate);
              }
              
                // 指定图表的配置项和数据
          self.$scope.options = {
              title: {
-                 text: '远程诊断统计图'
+                 text: self.seriesTitle+ '图'
              },
              tooltip: {},
              legend: {
-                 data:['请求会诊数量']
+                 data:['检查数量']
              },
              
              xAxis: {
@@ -49,18 +50,23 @@ export default class ConsultationComponent {
                  data: hotnames,
              },
              series: [{
-                 name: '请求会诊数量',
+                 name: '检查数量',
                  type: 'bar',
                  data: itemValues
              }]
          };
          });
     }
+/*         
+                axisLabel:{
+                    interval:0,
+                    rotate:40
+                }*/
     static Factory() {
         return {
-            controller: ConsultationComponent,
-            templateUrl: 'views/components/consultation.html'
+            controller: PositiveRateComponent,
+            templateUrl: 'views/components/positiverate.html'
         };
     }
 }
-ConsultationComponent.$inject = ['apiService', '$scope'];
+PositiveRateComponent.$inject = ['apiService', '$scope'];

@@ -1,7 +1,7 @@
 <section class="content-header">
 	<h1>
-		远程诊断统计
-		<small>统计某时间段内，各医院请求会诊的数量</small>
+            设备工作量统计
+		<small>统计某时间段各设备的检查量</small>
 	</h1>
 	<ol class="breadcrumb">
 		<!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
@@ -9,19 +9,16 @@
 	</ol>
 </section>
 <!-- Main content -->
-
-<!-- /.content -->
-
-<!-- Main content -->
 <section class="content">
-        <searchpanel></searchpanel>
+    <searchpanel></searchpanel>
     <!-- Your Page Content Here -->
     <table style="width:100%;">
         <tr>
             <td style="width: 30%;vertical-align: top;">
                 <table><tr ng-repeat="item in $ctrl.items">
                     <td>{{item.DepartName}}</td>
-                    <td>{{item.totalConsult}}</td>
+                    <td>{{item.DeviceId}}</td>
+                    <td>{{item.totalexam}}</td>
                 </tr>
                 </table>
             </td>

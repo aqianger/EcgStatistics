@@ -10,6 +10,11 @@ import Loginlayer from './components/loginlayer.component';
 import Login from './components/login.component';
 import Overall from './components/overall.component';
 import Regional from './components/regional.component';
+import ConsultationComponent  from './components/consultation.component';
+import DevicesComponent from './components/devices.component';
+import PositiveRateComponent from './components/positiverate.component';
+import DrWorkloadComponent from './components/drworkload.component';
+
 import mod from './services';
 // module
 //let mod = angular.module('xStatistics', []);
@@ -25,4 +30,9 @@ mod.component('loginlayer',Loginlayer.Factory());
 mod.component("login",Login.Factory());
 mod.component("overall",Overall.Factory());
 mod.component("regional",Regional.Factory());
+mod.component('consultation',ConsultationComponent.Factory());
+mod.component('devices',DevicesComponent.Factory());
+mod.component('positiverate',PositiveRateComponent.Factory());
+mod.component('drworkload',DrWorkloadComponent.Factory());
+
 export default mod;

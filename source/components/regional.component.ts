@@ -27,7 +27,7 @@ export default class RegionalComponent {
     }
 
     $onInit() {
-console.log(this.$scope);
+
     }
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
