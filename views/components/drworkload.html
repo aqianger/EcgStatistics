@@ -13,13 +13,14 @@
         <searchpanel></searchpanel>
         <!-- Your Page Content Here -->
         <table style="width:100%;">
-        <thead><tr>
-            <th>医院</th><th>医生数</th><th>诊断数</th>
-        </tr>
-        </thead>
             <tr>
                 <td style="width: 30%;vertical-align: top;">
-                    <table><tr ng-repeat="item in $ctrl.items">
+                    <table>
+                            <thead><tr>
+                                    <th>医院</th><th>医生数</th><th>诊断数</th>
+                                </tr>
+                                </thead>
+                        <tr ng-repeat="item in $ctrl.items">
                         <td><a ng-click="$ctrl.ShowDepartInfo(item.DepartId)">{{item.DepartName}}</a></td>
                         <td>{{item.totaldoctors}}</td>
                         <td>{{item.totaldiagnos}}</td>

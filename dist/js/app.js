@@ -175,7 +175,7 @@ $(function () {
       size: o.navbarMenuSlimscrollWidth
     }).css("width", "100%");
   }
-
+console.log("app.js",o);
   //Activate sidebar push menu
   if (o.sidebarPushMenu) {
     $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
