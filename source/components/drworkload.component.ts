@@ -3,7 +3,11 @@ import ApiConfig from '../router/apiconfig';
 export default class DrWorkloadComponent {
     readonly seriesTitle:string="医生工作量统计";
     items:any[]=[];
-
+    clditems:any[];
+    selHospital:string;
+    cacheDic:any;
+    startDate:string;
+    endDate:string;
   /**
    * 
 {\"DepartId\":\"e7973855-9916-4891-a3fc-ea28d9ae4441\",\"DepartName\":\"区长生桥镇卫生院\",\"totaldoctors\":1,\"totaldiagnos\":11554}
@@ -14,7 +18,7 @@ export default class DrWorkloadComponent {
    * @param $scope 
    */
     constructor(private api: ApiService,private $scope:any) {
-
+this.cacheDic={};
     }
 
     $onInit() {
@@ -22,9 +26,11 @@ export default class DrWorkloadComponent {
     }
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
+        self.startDate=startDate;
+        self.endDate=endDate;
         this.api.exec(ApiConfig.StatisticsDrworkload, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
- 
+            self.cacheDic={};
              self.items=result as any[];
              var hotnames=[];
              var itemValues=[];
@@ -36,11 +42,15 @@ export default class DrWorkloadComponent {
                // 指定图表的配置项和数据
          self.$scope.options = {
              title: {
-                 text: self.seriesTitle+ '图'
+                 text: self.seriesTitle+ '图',
+                 x:'center',
+                 y:'top',
+                 textAlign:'center'
              },
              tooltip: {},
              legend: {
-                 data:['诊断数量']
+                 data:['诊断数量'],
+                 x: 'right',
              },
              grid: {
                               x: 250,
@@ -62,6 +72,22 @@ export default class DrWorkloadComponent {
              }]
          };
          });
+    };
+    ShowDepartInfo(departId:string,hospital:string){
+        let self = this;
+        self.selHospital=hospital;
+        self.clditems=[];
+        if(self.cacheDic[departId]){
+            self.clditems=self.cacheDic[departId];
+            $('#myModal').modal('show');
+        }
+        else{
+    this.api.exec(ApiConfig.StatisticsDrworkbydep,{DepartId:departId,startDate:self.startDate,endDate:self.endDate}).then(function (result: any) {
+         self.clditems=result as any[];
+         self.cacheDic.departId=result;
+         $('#myModal').modal('show');
+    });
+}
     }
 /*         
                 axisLabel:{

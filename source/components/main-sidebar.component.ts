@@ -1,5 +1,16 @@
 export default class MainSidebarComponent {
-    constructor() { }
+    curstate:string;
+    constructor(private scope:any,private state:any) { 
+    
+    }
+    $onInit(){
+        this.curstate=this.state.current.name;
+        let self=this;
+        this.scope.$on('statechange', function(d,v) {
+           console.log(d,v);
+           self.curstate=v.stateName;
+        });
+    }
     static Factory() {
         return {
             controller: MainSidebarComponent,
@@ -7,3 +18,4 @@ export default class MainSidebarComponent {
         };
     }
 }
+MainSidebarComponent.$inject = ['$scope',"$state","$rootScope"];

@@ -32,7 +32,7 @@ let rootScope=this.$rootScope;
                     ToUrl = ToUrl + "&" + CData;
                 CData = {};
             } else {
-                console.log("param=null");
+               // console.log("param=null");
             }
         } else {
             method = "post";
@@ -45,7 +45,7 @@ let rootScope=this.$rootScope;
                     CData = JSON.stringify(param);
             }
         }
-        console.log("call api :" + ToUrl+":"+JSON.stringify(CData));
+       // console.log("call api :" + ToUrl+":"+JSON.stringify(CData));
 
         rootScope.loading = true;
         var promise = this.http({
@@ -60,7 +60,7 @@ let rootScope=this.$rootScope;
                 }
             })
             .then(function(response) {
-                console.log("response:" + JSON.stringify(response));
+               // console.log("response:" + JSON.stringify(response));
                 var result=response.data;
                                             if(result.Code!=0){
                                                 errortoast(result.Message);
@@ -73,7 +73,7 @@ let rootScope=this.$rootScope;
             }, function(err) {
                 //console.log(error.statusText + error.status);
                 if (err.status==401 || err.code == 401) {
-                    console.log("401 error,go autologin");
+                  //  console.log("401 error,go autologin");
                   
                                    this.http({
                                             url: this.server_url + ToUrl,
@@ -86,7 +86,7 @@ let rootScope=this.$rootScope;
                                             }
                                         })
                                         .then(function(response) {
-                                            console.log("response:" + JSON.stringify(response));
+                                           // console.log("response:" + JSON.stringify(response));
                                             var result=response.data;
                                             if(result.Code!=0){
                                                 errortoast(result.Message);
