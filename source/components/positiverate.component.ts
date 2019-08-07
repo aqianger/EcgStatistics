@@ -36,13 +36,19 @@ export default class PositiveRateComponent {
                // 指定图表的配置项和数据
          self.$scope.options = {
              title: {
-                 text: self.seriesTitle+ '图'
+                 text: self.seriesTitle+ '图',
+                 x:'center',
              },
              tooltip: {},
              legend: {
-                 data:['检查数量']
+                 data:['检查数量'],
+                 x:'right',
              },
-             
+             grid: {
+                x: 200,
+               x2: 50,
+                y2: 50
+       },
              xAxis: {
        
              },

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="/dist/js/datepicker/css/angular-datepicker.css">
+	<link rel="stylesheet" href="/dist/js/ngtable/ng-table.css">
 	<link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 	<link rel="stylesheet" href="dist/css/mycss.css">
 	<link rel="stylesheet" type="text/css" href="dist/css/bootoast.min.css">
@@ -31,14 +32,20 @@
 	<script src="node_modules/angular/angular.min.js"></script>
 	<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="dist/js/datepicker/js/angular-datepicker.js"></script>
+	<script src="dist/js/ngtable/ng-table.min.js"></script>
 	<script src="node_modules/typescript/lib/typescript.js"></script>
-	<script src="node_modules/systemjs/dist/system.js"></script>
+	<script src="node_modules/systemjs/dist/system.src.js"></script>
 	<script src="dist/js/bootoast.js"></script>
 	<script src="/dist/js/app.js"></script>
 	<script>
 		System.config({
 			transpiler: 'typescript',
-			map:{'echarts':'node_modules/echarts/dist/echarts.js','xlsx':'node_modules/xlsx/dist/xlsx.full.min.js'},
+			paths:{
+				'npm:':'node_modules/'
+			},
+			map:{'echarts':'node_modules/echarts/dist/echarts.js',
+			'xlsx':'node_modules/xlsx/dist/xlsx.full.min.js',			
+		},
 			packages: {
 				source: {
 					defaultExtension: 'ts'

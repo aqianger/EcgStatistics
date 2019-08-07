@@ -15,14 +15,18 @@
         <table style="width:100%;">
             <tr>
                 <td style="width: 30%;vertical-align: top;">
-                    <table class="table table-bordered mytb"><tr ng-repeat="item in $ctrl.items">
+                    <table class="table table-bordered mytb">
+                        <thead>
+                                <tr><th>医院</th><th>阳性率</th></tr>
+                        </thead>
+                        <tr ng-repeat="item in $ctrl.items">
                         <td>{{item.DepartName}}</td>
                         <td>{{item.positiverate}}</td>
                     </tr>
                     </table>
                 </td>
                 <td>
-                    <echarts options="options" height="50rem"></echarts>
+                    <echarts options="options" width="60rem" height="50rem"></echarts>
                 </td>
             </tr>
         </table>

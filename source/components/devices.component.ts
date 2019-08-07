@@ -1,10 +1,11 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+//import {NgTableParams}  from 'ng-table';
 export default class DevicesComponent {
     readonly seriesTitle:string="设备工作量统计";
     items:any[]=[];
-
-  /**
+tableParams:any[]=[];
+  /**s
    * 
  ,{\"DepartName\":\"重庆第五人民医院\",\"DeviceId\":\"wyfck\",\"totalexam\":3955}
    */
@@ -26,6 +27,7 @@ export default class DevicesComponent {
             // console.log(result,self.$scope);
  
              self.items=result as any[];
+             self.tableParams=new NgTableParams({},{dataset:result});
              var hotnames=[];
              var itemValues=[];
              for(var i=0;i<self.items.length;i++){
@@ -69,4 +71,4 @@ export default class DevicesComponent {
         };
     }
 }
-DevicesComponent.$inject = ['apiService', '$scope'];
+DevicesComponent.$inject = ['apiService', '$scope','NgTableParams'];
