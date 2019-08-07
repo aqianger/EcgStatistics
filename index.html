@@ -38,12 +38,13 @@
 	<script>
 		System.config({
 			transpiler: 'typescript',
-			map:{'echarts':'node_modules/echarts/dist/echarts.js'},
+			map:{'echarts':'node_modules/echarts/dist/echarts.js','xlsx':'node_modules/xlsx/dist/xlsx.full.min.js'},
 			packages: {
 				source: {
 					defaultExtension: 'ts'
 				},
 				'echarts':{ defaultExtension: 'js' },
+				'xlsx':{defaultExtension: 'js'},
 			}
 		});
 		System.import('/source/main');

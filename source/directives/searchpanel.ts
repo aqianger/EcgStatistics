@@ -10,7 +10,9 @@ export default class SearchPanel {
     selstartdate:Date;
     selenddate:Date;
     datetitles:any;
+    showexport:Boolean;
     constructor(private scope:any){
+        this.showexport=false;
         this.selTypes=1;//默认按年统计
         this.datetitles={"month":{"January":"一月","February":"二月","March":"三月","April":"四月","May":"五月","June":"六月","July":"七月",
         "August":"八月","September":"九月","October":"十月","November":"十一月","December":"十二月"},
@@ -20,6 +22,10 @@ export default class SearchPanel {
     }
     $onInit(){
         let self=this;
+        let parentscopt=this.scope.$parent.$ctrl;     
+        if( parentscopt&& parentscopt.ExportExcel){
+            self.showexport=true;
+        }
         this.scope.$watch('SearchPancelCtrl.selstartdate', function (value) {
             var  liveDate=null;
             try {
@@ -142,6 +148,20 @@ case "3":
                 break;
                 case "3":
                         parentscopt.Statistics(this.selstartdate,this.selenddate);
+                  break;  
+        }
+    }
+    ExportExcel(){
+        let parentscopt=this.scope.$parent.$ctrl;     
+        if( parentscopt&& parentscopt.ExportExcel)
+        switch(this.selTypes+"")
+        {
+            case "1":
+            case "2":
+                    parentscopt.ExportExcel(this.SelstartDate.value,this.SelendDate.value);
+                break;
+                case "3":
+                        parentscopt.ExportExcel(this.selstartdate,this.selenddate);
                   break;  
         }
     }
