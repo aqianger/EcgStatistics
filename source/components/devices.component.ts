@@ -1,10 +1,11 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {NgTableParams} from "ng-table";
 //import {NgTableParams}  from 'ng-table';
 export default class DevicesComponent {
     readonly seriesTitle:string="设备工作量统计";
     items:any[]=[];
-tableParams:any[]=[];
+tableParams:any={};
   /**s
    * 
  ,{\"DepartName\":\"重庆第五人民医院\",\"DeviceId\":\"wyfck\",\"totalexam\":3955}
@@ -19,7 +20,10 @@ tableParams:any[]=[];
     }
 
     $onInit() {
-
+        let self:any=this;
+        let result:any[]=[{"DepartName":"重庆第五人民医院","DeviceId":"wyfck","totalexam":3955}];
+        self.tableParams=new NgTableParams({},{dataset:result});
+        console.log(self.tableParams);
     }
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
@@ -27,7 +31,7 @@ tableParams:any[]=[];
             // console.log(result,self.$scope);
  
              self.items=result as any[];
-             self.tableParams=new NgTableParams({},{dataset:result});
+            // self.tableParams=new NgTableParams({},{dataset:result});
              var hotnames=[];
              var itemValues=[];
              for(var i=0;i<self.items.length;i++){
@@ -71,4 +75,4 @@ tableParams:any[]=[];
         };
     }
 }
-DevicesComponent.$inject = ['apiService', '$scope','NgTableParams'];
+DevicesComponent.$inject = ['apiService', '$scope'];
