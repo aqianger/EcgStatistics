@@ -17,17 +17,18 @@
             <td style="width: 30%;vertical-align: top;">
                 <table  ng-table="$ctrl.tableParams" class="table table-bordered mytb">
                     <thead>
-                        <tr><th>医院</th><th>设备编号</th><th>检查数量</th></tr>
+                        <tr><th ng-click="$ctrl.col='DepartName';$ctrl.desc=!$ctrl.desc;" >医院</th><th ng-click="$ctrl.col='DeviceId';$ctrl.desc=!$ctrl.desc;" >设备编号</th>
+                            <th ng-click="$ctrl.col='totalexam';$ctrl.desc=!$ctrl.desc;">检查数量</th></tr>
                     </thead>
-                    <tr ng-repeat="item in $data">
-                    <td>{{item.DepartName}}</td>
+                    <tr ng-repeat="item in $data | orderBy: $ctrl.col: $ctrl.desc">
+                    <td >{{item.DepartName}}</td>
                     <td>{{item.DeviceId}}</td>
                     <td>{{item.totalexam}}</td>
                 </tr>
                 </table>
             </td>
             <td>
-                <echarts options="options" height="60rem"></echarts>
+                <echarts options="options" height="55rem"></echarts>
             </td>
         </tr>
     </table>

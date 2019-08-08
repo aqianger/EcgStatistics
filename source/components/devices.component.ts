@@ -1,11 +1,11 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
 import {NgTableParams} from "ng-table";
-//import {NgTableParams}  from 'ng-table';
+
 export default class DevicesComponent {
     readonly seriesTitle:string="设备工作量统计";
-    items:any[]=[];
-tableParams:any={};
+   // items:any[]=[];
+
   /**s
    * 
  ,{\"DepartName\":\"重庆第五人民医院\",\"DeviceId\":\"wyfck\",\"totalexam\":3955}
@@ -20,10 +20,7 @@ tableParams:any={};
     }
 
     $onInit() {
-        let self:any=this;
-        let result:any[]=[{"DepartName":"重庆第五人民医院","DeviceId":"wyfck","totalexam":3955}];
-        self.tableParams=new NgTableParams({},{dataset:result});
-        console.log(self.tableParams);
+       
     }
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
@@ -31,24 +28,33 @@ tableParams:any={};
             // console.log(result,self.$scope);
  
              self.items=result as any[];
-            // self.tableParams=new NgTableParams({},{dataset:result});
+           self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
+           
              var hotnames=[];
              var itemValues=[];
              for(var i=0;i<self.items.length;i++){
-                 hotnames.push(self.items[i].DepartName+":"+self.items[i].DeviceId);
-                 itemValues.push(self.items[i].totalexam);
+                 hotnames.push(result[i].DepartName+":"+result[i].DeviceId);
+                 itemValues.push(result[i].totalexam);
              }
              
                // 指定图表的配置项和数据
          self.$scope.options = {
              title: {
-                 text: self.seriesTitle+ '图'
+                 text: self.seriesTitle+ '图',
+                 x:'center',
+                 y:'top',
+                 textAlign:'center'
              },
              tooltip: {},
              legend: {
-                 data:['检查数量']
+                 data:['检查数量'],
+                 x: 'right',
              },
-             
+             grid: {
+                x: 250,
+               x2: 50,
+                y2: 50
+       },
              xAxis: {
        
              },
