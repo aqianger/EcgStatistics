@@ -1,9 +1,8 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {NgTableParams} from 'ng-table';
 export default class RegionalComponent {
     readonly seriesTitle:string="区域检查申请统计";
-    items:any[]=[];
-
   /**
    * 
   0: {DepartName: "区长生桥镇卫生院", DiagNum: 11554}
@@ -33,28 +32,36 @@ export default class RegionalComponent {
         let self = this;
         this.api.exec(ApiConfig.StatisticsRegional, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
- 
-             self.items=result as any[];
+            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
+            
              var hotnames=[];
              var itemValues=[];
-             for(var i=0;i<self.items.length;i++){
-                 hotnames.push(self.items[i].DepartName);
-                 itemValues.push(self.items[i].DiagNum);
+             for(var i=0;i<result.length;i++){
+                 hotnames.push(result[i].DepartName);
+                 itemValues.push(result[i].DiagNum);
              }
              
                // 指定图表的配置项和数据
          self.$scope.options = {
              title: {
-                 text: '区域检查申请统计图'
+                 text: '区域检查申请统计图',
+                 x:'center',
+                 y:'top',
+                 textAlign:'center'
              },
              tooltip: {},
              legend: {
-                 data:['检查数量']
+                 data:['检查数量'],
+                 x: 'right',
+             },  
+             xAxis: {     
              },
-             
-             xAxis: {
-       
-             },
+             grid: {
+                x: 250,
+               x2: 50,
+               y:50,
+                y2: 50
+       },
              yAxis: {
                  data: hotnames,
              },

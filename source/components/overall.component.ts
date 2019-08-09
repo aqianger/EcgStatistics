@@ -17,7 +17,7 @@ export default class OverallComponent {
     $onInit() {
         let self = this;
         this.api.exec(ApiConfig.StatisticsOverall, {}).then(function (result: any) {
-            console.log(result);
+           // console.log(result);
             if (result) {
                 self.total_hospital = result.total_hospital;
                 self.ratio_positive = result.ratio_positive*100;
@@ -27,8 +27,45 @@ export default class OverallComponent {
 
             }
         });
-    }
-
+        this.api.exec(ApiConfig.StatisticsRegional,{}).then(function(result:any){
+            var hotnames=[];
+             var itemValues=[];
+             for(var i=0;i<result.length;i++){
+                 hotnames.push(result[i].DepartName);
+                 itemValues.push(result[i].DiagNum);
+             }
+       // 指定图表的配置项和数据
+       self.$scope.options = {
+        title: {
+            text: '区域检查申请统计图',
+            x:'center',
+            y:'top',
+            textAlign:'center'
+        },
+        tooltip: {},
+        legend: {
+            data:['检查数量'],
+            x: 'right',
+        },  
+        xAxis: {     
+        },
+        grid: {
+           x: 250,
+          x2: 50,
+          y:50,
+           y2: 50
+  },
+        yAxis: {
+            data: hotnames,
+        },
+        series: [{
+            name: '检查数量',
+            type: 'bar',
+            data: itemValues
+        }]
+    };
+    });
+}
     static Factory() {
         return {
             controller: OverallComponent,

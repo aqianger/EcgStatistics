@@ -1,6 +1,7 @@
 import ApiService from './../services/api.service';
 import * as XLSX from "xlsx";
 import ApiConfig from '../router/apiconfig';
+import {NgTableParams,NgTableEventsChannel,IPageButton} from "ng-table";
 export default class DrWorkloadComponent {
     readonly seriesTitle:string="医生工作量统计";
     items:any[]=[];
@@ -18,13 +19,78 @@ export default class DrWorkloadComponent {
    * @param api 
    * @param $scope 
    */
-    constructor(private api: ApiService,private $scope:any) {
+    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel) {
 this.cacheDic={};
     }
 
     $onInit() {
-
+        this.$scope.$watch("$ctrl.tableParams", this.subscribeToTable.bind(this));
     }
+  
+    subscribeToTable(param:any){
+        if (!param) return;
+        let self=this;
+      let  PageChanded=function(publisher: NgTableParams<any>, newPages: IPageButton[], oldPages: IPageButton[]){
+            let items:any[]=publisher.data;
+            var hotnames=[];
+             var itemValues=[];
+             for(var i=0;i<items.length;i++){
+                 hotnames.push(items[i].DepartName);
+                 itemValues.push(items[i].totaldiagnos);
+             }
+             
+               // 指定图表的配置项和数据
+         self.$scope.options = {
+             title: {
+                 text: self.seriesTitle+ '图',
+                 x:'center',
+                 y:'top',
+                 textAlign:'center'
+             },
+             tooltip: {},
+             legend: {
+                 data:['诊断数量'],
+                 x: 'right',
+             },
+             grid: {
+                              x: 250,
+                             x2: 50,
+                              y2: 50
+                     },
+             xAxis: {
+       
+             },
+             yAxis: {
+                 data: hotnames,
+                 offset:0,
+                 nameLocation:"middle"
+             },
+             series: [{
+                 name: '诊断数量',
+                 type: 'bar',
+                 data: itemValues
+             }]
+         };
+      }
+      this.ngtableEventsChannel.onPagesChanged( PageChanded, this.$scope, param);
+    }
+exportDocInfos(){
+    let td:Date=new Date();
+    var copyItems=[];
+    for(var i=0;i<this.clditems.length;i++){
+        copyItems.push({"医生名称":this.clditems[i].UserName,"诊断数量":this.clditems[i].totaldiagnos});
+    }
+if(copyItems.length==0){
+    return;
+}
+    var ws =XLSX.utils.json_to_sheet(this.clditems);
+/* add to workbook */
+var wb = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb, ws, this.selHospital+"医生工作量");
+/* write workbook and force a download */
+XLSX.writeFile(wb, this.selHospital+"医生工作量"+td.getFullYear()+(td.getMonth()+1).toString()+td.getDate()+  ".xlsx");
+}
+
     ExportExcel:Function=function (startDate:string,endDate:string):void{
         let self = this;
         self.startDate=startDate;
@@ -32,14 +98,14 @@ this.cacheDic={};
         this.api.exec(ApiConfig.StatisticsDrworkload, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
             self.cacheDic={};
-             self.items=result as any[];
+             
              var hotnames=[];
              var itemValues=[];
              var copyItems=[];
-             for(var i=0;i<self.items.length;i++){
-                 hotnames.push(self.items[i].DepartName);
-                 itemValues.push(self.items[i].totaldiagnos);
-                 copyItems.push({"医院":self.items[i].DepartName,"医生数":self.items[i].totaldoctors,"诊断数":self.items[i].totaldiagnos});
+             for(var i=0;i<result.length;i++){
+                 hotnames.push(result [i].DepartName);
+                 itemValues.push(result [i].totaldiagnos);
+                 copyItems.push({"医院":result[i].DepartName,"医生数":result[i].totaldoctors,"诊断数":result[i].totaldiagnos});
              }
              let td:Date=new Date();
              /* generate a worksheet */
@@ -90,46 +156,8 @@ XLSX.writeFile(wb, self.seriesTitle+td.getFullYear()+(td.getMonth()+1).toString(
         this.api.exec(ApiConfig.StatisticsDrworkload, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
             self.cacheDic={};
-             self.items=result as any[];
-             var hotnames=[];
-             var itemValues=[];
-             for(var i=0;i<self.items.length;i++){
-                 hotnames.push(self.items[i].DepartName);
-                 itemValues.push(self.items[i].totaldiagnos);
-             }
+            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
              
-               // 指定图表的配置项和数据
-         self.$scope.options = {
-             title: {
-                 text: self.seriesTitle+ '图',
-                 x:'center',
-                 y:'top',
-                 textAlign:'center'
-             },
-             tooltip: {},
-             legend: {
-                 data:['诊断数量'],
-                 x: 'right',
-             },
-             grid: {
-                              x: 250,
-                             x2: 50,
-                              y2: 50
-                     },
-             xAxis: {
-       
-             },
-             yAxis: {
-                 data: hotnames,
-                 offset:0,
-                 nameLocation:"middle"
-             },
-             series: [{
-                 name: '诊断数量',
-                 type: 'bar',
-                 data: itemValues
-             }]
-         };
          });
     };
     ShowDepartInfo(departId:string,hospital:string){
@@ -160,4 +188,4 @@ XLSX.writeFile(wb, self.seriesTitle+td.getFullYear()+(td.getMonth()+1).toString(
         };
     }
 }
-DrWorkloadComponent.$inject = ['apiService', '$scope'];
+DrWorkloadComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel"];

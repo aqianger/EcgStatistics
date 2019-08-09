@@ -15,14 +15,15 @@
     <table style="width:100%;">
         <tr>
             <td style="width: 30%;vertical-align: top;">
-                <table><tr ng-repeat="item in $ctrl.items">
-                    <td>{{item.DepartName}}</td>
-                    <td>{{item.DiagNum}}</td>
+                <table ng-table="$ctrl.tableParams" class="table table-bordered mytb">
+                    <tr ng-repeat="item in $data">
+                    <td data-title="'医院'" sortable="'DepartName'">{{item.DepartName}}</td>
+                    <td data-title="'诊断数量'" sortable="'DiagNum'">{{item.DiagNum}}</td>
                 </tr>
                 </table>
             </td>
             <td>
-                <echarts options="options" height="60rem"></echarts>
+                <echarts options="options" height="50rem"></echarts>
             </td>
         </tr>
     </table>

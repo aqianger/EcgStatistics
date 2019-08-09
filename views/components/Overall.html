@@ -6,18 +6,22 @@
 	<ol class="breadcrumb">
 		<!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
 		<li class="active">home</li>
-	</ol>
+    </ol>
+    <hr style="width: 100%;border-color:#939393;">
 </section>
 <!-- Main content -->
-<section class="content">
-	<!-- Your Page Content Here -->
-	<ul>
+<section class="content" style="">
+    <!-- Your Page Content Here -->
+    <table><tr><td style="vertical-align: top;" >
+	<ul style="font-size: 3rem;">
         <li><a title="五院+社区医院总量" href="javascript:void(0);">医院数量：</a>{{$ctrl.total_hospital}}</li>
         <li><a title="已诊断申请单总量" href="javascript:void(0);">检查总量：</a>{{$ctrl.total_diagnosis}}</li>
         <li><a title="已会诊总量" href="javascript:void(0);">请求远程诊断总量：</a>{{$ctrl.total_consultations}}</li>
         <li><a title="结论不包含“正常”/总量" href="javascript:void(0);">阳性率：</a>{{$ctrl.ratio_positive|number:2}}%</li>
         <li><a title="设备表总数量" href="javascript:void(0);">设备总量：</a>{{$ctrl.total_devices}}</li>
-    </ul>
-    
+    </ul></td><td>
+    <echarts options="options" width="70rem" height="50rem"></echarts>
+</td></tr></table>
+<div style="min-height: 100px;"></div>
 </section>
 <!-- /.content -->

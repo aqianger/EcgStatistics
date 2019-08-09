@@ -15,17 +15,14 @@
         <table style="width:100%;">
             <tr>
                 <td style="width: 30%;vertical-align: top;">
-                    <table class="table table-bordered mytb">
-                        <thead>
-                                <tr><th>医院</th><th>阳性率</th></tr>
-                        </thead>
-                        <tr ng-repeat="item in $ctrl.items">
-                        <td>{{item.DepartName}}</td>
-                        <td>{{item.positiverate}}</td>
+                    <table ng-table="$ctrl.tableParams" class="table table-bordered mytb">
+                        <tr ng-repeat="item in $data">
+                        <td  data-title="'医院'" sortable="'DepartName'">{{item.DepartName}}</td>
+                        <td  data-title="'阳性率'" sortable="'positiverate'">{{item.positiverate}}</td>
                     </tr>
                     </table>
                 </td>
-                <td>
+                <td style="padding-left: 20px;">
                     <echarts options="options" width="60rem" height="50rem"></echarts>
                 </td>
             </tr>

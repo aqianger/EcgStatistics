@@ -16,7 +16,6 @@ export default class DevicesComponent {
    * @param $scope 
    */
     constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel) {
-console.log(ngtableEventsChannel);
     }
 
     $onInit() {
@@ -27,7 +26,6 @@ console.log(ngtableEventsChannel);
         if (!param) return;
         let self=this;
       let  PageChanded=function(publisher: NgTableParams<any>, newPages: IPageButton[], oldPages: IPageButton[]){
-            console.log(publisher.data);
             var hotnames=[];
             var itemValues=[];
             let items:any[]=publisher.data;
@@ -75,11 +73,9 @@ console.log(ngtableEventsChannel);
     Statistics:Function=function (startDate:string,endDate:string):void{
         let self = this;
         this.api.exec(ApiConfig.StatisticsDevices, {startDate:startDate, endDate:endDate}).then(function (result: any) {
-            // console.log(result,self.$scope);
- 
-             self.items=result as any[];
+
            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
-          //NgTableEventsChannel.prototype.onPagesChanged=self.PageChanded;
+    
             
          });
     }
