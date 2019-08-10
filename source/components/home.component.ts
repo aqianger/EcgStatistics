@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class HomeComponent {
     message: string;
     constructor() {
@@ -9,7 +10,7 @@ export default class HomeComponent {
     static Factory() {
         return {
             controller: HomeComponent,
-            templateUrl: 'views/components/home.html'
+            templateUrl:baseUrl+ 'views/components/home.html'
         };
     }
 }

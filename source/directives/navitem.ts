@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import MyService from './../services/my.service';
+import {baseUrl} from '../config';
 export default class navItem {
     
     constructor(private myService:MyService,private apiService:ApiService, scope){
@@ -27,7 +28,7 @@ export default class navItem {
             link: navItem.Link,
             controller: navItem,
             controllerAs: 'navItemCtrl',
-            templateUrl: 'views/directives/navitem.html'
+            templateUrl:baseUrl+ 'views/directives/navitem.html'
         }
     }
 }

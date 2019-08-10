@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {baseUrl} from '../config';
 export default class OverallComponent {
     /**
      * "{\"total_hospital\":12,\"total_diagnosis\":115892,\"total_consultations\":145,\"ratio_positive\":0.58,\"total_devices\":89}"
@@ -69,7 +70,7 @@ export default class OverallComponent {
     static Factory() {
         return {
             controller: OverallComponent,
-            templateUrl: 'views/components/Overall.html'
+            templateUrl: baseUrl+'views/components/Overall.html'
         };
     }
 }

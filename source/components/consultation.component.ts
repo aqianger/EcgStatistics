@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {baseUrl} from '../config';
 //import {NgTableParams,NgTableEventsChannel,IPageButton} from 'ng-table';
 import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
 export default class ConsultationComponent {
@@ -76,7 +77,7 @@ export default class ConsultationComponent {
     static Factory() {
         return {
             controller: ConsultationComponent,
-            templateUrl: 'views/components/consultation.html'
+            templateUrl:baseUrl+ 'views/components/consultation.html'
         };
     }
 }

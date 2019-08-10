@@ -1,7 +1,7 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
 import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
-
+import {baseUrl} from '../config';
 export default class DevicesComponent {
     readonly seriesTitle:string="设备工作量统计";
    // items:any[]=[];
@@ -87,7 +87,7 @@ export default class DevicesComponent {
     static Factory() {
         return {
             controller: DevicesComponent,
-            templateUrl: 'views/components/devices.html'
+            templateUrl: baseUrl+'views/components/devices.html'
         };
     }
 }

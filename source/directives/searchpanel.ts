@@ -1,5 +1,5 @@
 //import ApiService from '../services/api.service';
-
+import {baseUrl} from '../config';
 import SelectItemModel from './../model/SelectItemModel';
 export default class SearchPanel {
     startDates:SelectItemModel[];
@@ -176,7 +176,7 @@ case "3":
             link: SearchPanel.Link,
             controller: SearchPanel,
             controllerAs: 'SearchPancelCtrl',
-            templateUrl: `views/directives/searchpanel.html`
+            templateUrl:baseUrl+ `views/directives/searchpanel.html`
         }
     }
 }

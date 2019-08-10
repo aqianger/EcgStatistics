@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class AppComponent {
     constructor() { }
     $onInit(){
@@ -6,7 +7,7 @@ export default class AppComponent {
     static Factory() {
         return {
             controller: AppComponent,
-            templateUrl: 'views/components/app.html'
+            templateUrl: baseUrl+'views/components/app.html'
         };
     }
 }

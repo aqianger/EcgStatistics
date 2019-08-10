@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class ControlSidebarComponent {
     constructor() { }
     $onInit(){
@@ -6,7 +7,7 @@ export default class ControlSidebarComponent {
     static Factory() {
         return {
             controller: ControlSidebarComponent,
-            templateUrl: 'views/components/control-sidebar.html'
+            templateUrl:baseUrl+ 'views/components/control-sidebar.html'
         };
     }
 }

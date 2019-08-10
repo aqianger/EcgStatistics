@@ -1,5 +1,6 @@
 //import ApiService from './../services/api.service';
 import MyService from './../services/my.service';
+import {baseUrl} from '../config';
 export default class navItemInnerRich {
     
     constructor(private myService:MyService,/*private apiService:ApiService,*/ scope){
@@ -24,7 +25,7 @@ export default class navItemInnerRich {
             link: navItemInnerRich.Link,
             controller: navItemInnerRich,
             controllerAs: 'navItemCtrl',
-            templateUrl: 'views/directives/navitem.inner.rich.html'
+            templateUrl: baseUrl+'views/directives/navitem.inner.rich.html'
         }
     }
 }

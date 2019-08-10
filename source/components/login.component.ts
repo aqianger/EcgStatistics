@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {baseUrl} from '../config';
 export default class LoginComponent {
     message: string;
     constructor(private api:ApiService) {
@@ -15,7 +16,7 @@ console.log(result);
     static Factory() {
         return {
             controller: LoginComponent,
-            templateUrl: 'views/login/login.html'
+            templateUrl:baseUrl+ 'views/login/login.html'
         };
     }
 }

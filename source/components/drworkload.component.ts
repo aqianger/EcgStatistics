@@ -2,6 +2,7 @@ import ApiService from './../services/api.service';
 import * as XLSX from "xlsx";
 import ApiConfig from '../router/apiconfig';
 import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
+import {baseUrl} from '../config';
 export default class DrWorkloadComponent {
     readonly seriesTitle:string="医生工作量统计";
     items:any[]=[];
@@ -184,7 +185,7 @@ XLSX.writeFile(wb, self.seriesTitle+td.getFullYear()+(td.getMonth()+1).toString(
     static Factory() {
         return {
             controller: DrWorkloadComponent,
-            templateUrl: 'views/components/drworkload.html'
+            templateUrl: baseUrl+'views/components/drworkload.html'
         };
     }
 }

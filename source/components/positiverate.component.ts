@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {baseUrl} from '../config';
 import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
 export default class PositiveRateComponent {
     readonly seriesTitle:string="阳性率统计";
@@ -84,7 +85,7 @@ export default class PositiveRateComponent {
     static Factory() {
         return {
             controller: PositiveRateComponent,
-            templateUrl: 'views/components/positiverate.html'
+            templateUrl:baseUrl+ 'views/components/positiverate.html'
         };
     }
 }

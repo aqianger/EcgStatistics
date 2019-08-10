@@ -1,37 +1,37 @@
 function config(locationProvider, stateProvider, urlRouterProvider) {
     locationProvider.html5Mode(true);
-	urlRouterProvider.otherwise('/home');
+	urlRouterProvider.otherwise(baseUrl+'home');
 
     stateProvider.state('home', {
-        url:'/home',
+        url:baseUrl+'home',
         template: '<overall></overall>'
     })
     .state('login',{
-        url:'/login',
+        url:baseUrl+'login',
         template:"<login></login>"
     })
     .state('regional', {
-        url: '/regional',
+        url: baseUrl+'regional',
         template: '<regional></regional>'
     })
     .state('consultation',{
-        url:'/consultation',
+        url:baseUrl+'consultation',
         template:"<consultation></consultation>"
     })
     .state('devices',{
-        url:'/devices',
+        url:baseUrl+'devices',
         template:"<devices></devices>"
     })
     .state("positiverate",{
-        url:'/positiverate',
+        url:baseUrl+'positiverate',
         template:"<positiverate></positiverate>"
     })
     .state("drworkload",{
-        url:"/drworkload",
+        url:"/statistics/drworkload",
         template:"<drworkload></drworkload>"
     })
 }
 
 config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
-
+export const baseUrl:string="/statistics/";
 export default config;

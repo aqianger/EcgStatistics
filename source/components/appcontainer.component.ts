@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class AppcontainerComponent {
     itemtype:string;
     static $inject = ["$state","$scope","$rootScope"];
@@ -27,7 +28,7 @@ export default class AppcontainerComponent {
     static Factory() {
         return {
             controller: AppcontainerComponent,
-            templateUrl: 'views/components/appcontainer.html'
+            templateUrl:baseUrl+ 'views/components/appcontainer.html'
         };
     }
 }

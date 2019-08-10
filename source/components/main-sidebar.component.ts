@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class MainSidebarComponent {
     curstate:string;
     constructor(private scope:any,private state:any) { 
@@ -14,7 +15,7 @@ export default class MainSidebarComponent {
     static Factory() {
         return {
             controller: MainSidebarComponent,
-            templateUrl: 'views/components/main-sidebar.html'
+            templateUrl:baseUrl+ 'views/components/main-sidebar.html'
         };
     }
 }

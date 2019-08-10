@@ -1,5 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
+import {baseUrl} from '../config';
 //import {NgTableParams} from '../../dist/js/ngtable/';
 declare var NgTableParams;
 export default class RegionalComponent {
@@ -82,7 +83,7 @@ export default class RegionalComponent {
     static Factory() {
         return {
             controller: RegionalComponent,
-            templateUrl: 'views/components/regional.html'
+            templateUrl:baseUrl+ 'views/components/regional.html'
         };
     }
 }

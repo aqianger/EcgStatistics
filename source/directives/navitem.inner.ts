@@ -1,4 +1,5 @@
 //import ApiService from './../services/api.service';
+import {baseUrl} from '../config';
 import MyService from './../services/my.service';
 export default class navItemInner {
     
@@ -22,7 +23,7 @@ export default class navItemInner {
             link: navItemInner.Link,
             controller: navItemInner,
             controllerAs: 'navItemCtrl',
-            templateUrl: 'views/directives/navitem.inner.html'
+            templateUrl:baseUrl+ 'views/directives/navitem.inner.html'
         }
     }
 }

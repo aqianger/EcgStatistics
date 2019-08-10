@@ -1,3 +1,4 @@
+import {baseUrl} from '../config';
 export default class LoginLayerComponent {
     constructor() { }
     $onInit(){
@@ -6,7 +7,7 @@ export default class LoginLayerComponent {
     static Factory() {
         return {
             controller: LoginLayerComponent,
-            templateUrl: 'views/login/loginlayer.html'
+            templateUrl:baseUrl+ 'views/login/loginlayer.html'
         };
     }
 }
