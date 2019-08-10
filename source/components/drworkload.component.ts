@@ -1,7 +1,7 @@
 import ApiService from './../services/api.service';
 import * as XLSX from "xlsx";
 import ApiConfig from '../router/apiconfig';
-import {NgTableParams,NgTableEventsChannel,IPageButton} from "ng-table";
+import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
 export default class DrWorkloadComponent {
     readonly seriesTitle:string="医生工作量统计";
     items:any[]=[];
@@ -83,7 +83,7 @@ exportDocInfos(){
 if(copyItems.length==0){
     return;
 }
-    var ws =XLSX.utils.json_to_sheet(this.clditems);
+    var ws =XLSX.utils.json_to_sheet(copyItems);
 /* add to workbook */
 var wb = XLSX.utils.book_new();
 XLSX.utils.book_append_sheet(wb, ws, this.selHospital+"医生工作量");

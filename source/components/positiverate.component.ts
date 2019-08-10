@@ -1,6 +1,6 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
-import {NgTableParams,NgTableEventsChannel,IPageButton} from "ng-table";
+import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
 export default class PositiveRateComponent {
     readonly seriesTitle:string="阳性率统计";
     items:any[]=[];

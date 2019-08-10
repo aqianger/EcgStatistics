@@ -1,6 +1,7 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
-import {NgTableParams} from 'ng-table';
+//import {NgTableParams} from '../../dist/js/ngtable/';
+declare var NgTableParams;
 export default class RegionalComponent {
     readonly seriesTitle:string="区域检查申请统计";
   /**
@@ -85,4 +86,4 @@ export default class RegionalComponent {
         };
     }
 }
-RegionalComponent.$inject = ['apiService', '$scope'];
+RegionalComponent.$inject = ['apiService', '$scope','NgTableParams'];

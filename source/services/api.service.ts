@@ -1,4 +1,4 @@
-import {RequestModel,ApiFuncs} from '../model/requestmodel';
+import  RequestModel  from './../model/requestmodel';
 import errortoast from '../errortoast';
 export default class ApiService {
     server_url="http://192.168.25.170:22534/Statistic/";

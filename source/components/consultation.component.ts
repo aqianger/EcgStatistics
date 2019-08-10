@@ -1,6 +1,7 @@
 import ApiService from './../services/api.service';
 import ApiConfig from '../router/apiconfig';
-import {NgTableParams,NgTableEventsChannel,IPageButton} from 'ng-table';
+//import {NgTableParams,NgTableEventsChannel,IPageButton} from 'ng-table';
+import {NgTableParams,NgTableEventsChannel,IPageButton} from "../../dist/js/ngtable/ng-table";
 export default class ConsultationComponent {
     readonly seriesTitle:string="区域检查申请统计";
   /**
