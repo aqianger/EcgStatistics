@@ -1,0 +1,31 @@
+<div style="width:100%;margin-bottom: 3rem;">
+    <fieldset>
+        <legend>统计范围</legend>
+    <div style="float:left;">
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="1" ng-model="SearchPancelCtrl.selTypes">按年</label>
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="2" ng-model="SearchPancelCtrl.selTypes">按月</label>
+    <label><input type="radio" name="selType" ng-change="SearchPancelCtrl.SetSelTypes()" ng-value="3" ng-model="SearchPancelCtrl.selTypes">自定义</label>
+    </div>
+    <div style="float:left;min-width: 800px; margin-left: 20px;">
+    <div class="ympanel" ng-if="SearchPancelCtrl.selTypes==1||SearchPancelCtrl.selTypes==2">
+        <select class="startDate" ng-change="SearchPancelCtrl.startDateChanged()" ng-model="SearchPancelCtrl.SelstartDate"
+        ng-options="s as s.name for s in SearchPancelCtrl.startDates track by s.name" >
+        </select>至<select class="endDate" ng-change="SearchPancelCtrl.endDateChanged()" ng-model="SearchPancelCtrl.SelendDate" 
+        ng-options="ed as ed.name for ed in SearchPancelCtrl.endDates track by ed.name"></select>
+    </div>
+    <div class="datepanel" ng-if="SearchPancelCtrl.selTypes==3">
+        <div class="datecontainer">
+        <datepicker date-month-title="selected year" datetitles-Cn="{{SearchPancelCtrl.datetitles}}"  date-format="yyyy-MM-dd" date-year-title="selected title">
+            <input ng-model="SearchPancelCtrl.selstartdate"/>至
+        </datepicker></div>
+        <div class="datecontainer">
+        <datepicker date-month-title="selected year" datetitles-Cn="{{SearchPancelCtrl.datetitles}}" date-format="yyyy-MM-dd" date-year-title="selected title">
+            <input ng-model="SearchPancelCtrl.selenddate"/>
+        </datepicker>
+    </div>
+    </div>
+    <button class="btnconfirm" ng-click="SearchPancelCtrl.Statistics()">确认</button>&nbsp;&nbsp;<button class="btnconfirm" ng-if="SearchPancelCtrl.showexport" ng-click="SearchPancelCtrl.ExportExcel()">导出Excel</button>
+</div>
+<div style="clear: both;"></div>
+</fieldset>
+</div>

@@ -1,0 +1,33 @@
+<section class="content-header">
+        <h1>
+                阳性率统计
+            <small>统计某一时间段，各医院的阳性率</small>
+        </h1>
+        <ol class="breadcrumb">
+            <!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
+            <li class="active">home</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <searchpanel></searchpanel>
+        <!-- Your Page Content Here -->
+        <table style="width:100%;">
+            <tr>
+                <td style="width: 30%;vertical-align: top;">
+                    <table ng-table="$ctrl.tableParams" class="table table-bordered mytb">
+                        <tr ng-repeat="item in $data">
+                        <td  data-title="'医院'" sortable="'DepartName'">{{item.DepartName}}</td>
+                        <td  data-title="'阳性率'" sortable="'positiverate'">{{item.positiverate}}</td>
+                    </tr>
+                    </table>
+                </td>
+                <td style="padding-left: 20px;">
+                    <echarts options="options" width="60rem" height="50rem"></echarts>
+                </td>
+            </tr>
+        </table>
+        
+        
+    </section>
+    <!-- /.content -->

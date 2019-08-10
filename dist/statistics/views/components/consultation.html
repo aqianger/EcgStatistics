@@ -1,0 +1,36 @@
+<section class="content-header">
+	<h1>
+		远程诊断统计
+		<small>统计某时间段内，各医院请求会诊的数量</small>
+	</h1>
+	<ol class="breadcrumb">
+		<!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
+		<li class="active">home</li>
+	</ol>
+</section>
+<!-- Main content -->
+
+<!-- /.content -->
+
+<!-- Main content -->
+<section class="content">
+        <searchpanel></searchpanel>
+    <!-- Your Page Content Here -->
+    <table style="width:100%;">
+        <tr>
+            <td style="width: 30%;vertical-align: top;">
+                <table  ng-table="$ctrl.tableParams" class="table table-bordered mytb"><tr ng-repeat="item in $data">
+                    <td data-title="'医院'" sortable="'DepartName'">{{item.DepartName}}</td>
+                    <td data-title="'请求会诊数'" sortable="'totalConsult'">{{item.totalConsult}}</td>
+                </tr>
+                </table>
+            </td>
+            <td>
+                <echarts options="options" height="50rem"></echarts>
+            </td>
+        </tr>
+    </table>
+	
+    
+</section>
+<!-- /.content -->

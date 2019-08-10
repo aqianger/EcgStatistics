@@ -1,0 +1,68 @@
+<section class="content-header">
+        <h1>
+                医生工作量统计
+            <small>各医院诊断医生数量、诊断总量</small>
+        </h1>
+        <ol class="breadcrumb">
+            <!--<li><a ui-sref="home"><i class="fa fa-dashboard"></i> home</a></li>-->
+            <li class="active">home</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <searchpanel></searchpanel>
+        <!-- Your Page Content Here -->
+        <table style="width:100%;height: 100%;">
+            <tr>
+                <td style="width: 30%;vertical-align: top; padding-top: 20px;">
+                    <table ng-table="$ctrl.tableParams"  class="table table-bordered mytb">
+                        <tr ng-repeat="item in $data">
+                        <td data-title="'医院'" sortable="'DepartName'" ><a ng-click="$ctrl.ShowDepartInfo(item.DepartId,item.DepartName)">{{item.DepartName}}</a></td>
+                        <td data-title="'医生数'" sortable="'DepartName'" >{{item.totaldoctors}}</td>
+                        <td data-title="'诊断数'" sortable="'totaldiagnos'">{{item.totaldiagnos}}</td>
+                    </tr>
+                    </table>
+                </td>
+                <td>
+                    <echarts options="options" width="80rem" height="40rem"></echarts>
+                </td>
+            </tr>
+        </table>
+        
+        <div style="min-height: 80px;"></div>
+    </section>
+    <!-- /.content -->
+    <!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{$ctrl.selHospital}}:医生工作量
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered mytb" >
+                        <thead>
+                            <tr><th>医生名称</th><th>诊断数量</th></tr>    
+                            <tr ng-repeat="item in $ctrl.clditems">
+                                    <td>{{item.UserName}}</td>
+                                    <td>{{item.totaldiagnos}}</td>
+                                </tr>                    
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.exportDocInfos()">导出Excel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->

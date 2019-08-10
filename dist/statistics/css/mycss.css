@@ -1,0 +1,43 @@
+section .content{
+    min-height: 550px;
+}
+.datepanel{
+ width:400px;
+    float: left;
+}
+.datepanel .datecontainer{
+    max-width: 250px;
+    float: left;
+}
+.ympanel{
+    width:200px;
+    float: left;
+}
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+    background:red;
+    color:white;
+  }
+  table.table-bordered.mytb{
+   border: 1px solid #a5a0a0
+  }
+  table.table-bordered.mytb th{
+    border: 1px solid #a5a0a0;
+    text-align: center;
+   }
+table.mytb tr td{
+   border: 1px solid #9c9a9a;
+   text-align: center;
+}  
+.modal-header{
+    background-color: #367fa9;
+}
+.modal-header h4{
+    color: #ffffff;
+}
+fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+
+legend{padding:.5em;border:0;width:auto;
+    margin-bottom: 0px; }
+    fieldset button{
+        width:100px;
+    }    
