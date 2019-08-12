@@ -1,4 +1,4 @@
-export interface NgTableParams<T>{
+export interface NgTableParams{
 data:any;
 }
 export interface IPageButton{

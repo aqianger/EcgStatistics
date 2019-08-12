@@ -14,7 +14,7 @@ export default class ConsultationComponent {
    * @param api 
    * @param $scope 
    */
-    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel) {
+    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel, private ngTableParams:NgTableParams) {
 
     }
 
@@ -24,7 +24,7 @@ export default class ConsultationComponent {
     subscribeToTable(param:any){
         if (!param) return;
         let self=this;
-        let  PageChanded=function(publisher: NgTableParams<any>, newPages: IPageButton[], oldPages: IPageButton[]){
+        let  PageChanded=function(publisher: NgTableParams, newPages: IPageButton[], oldPages: IPageButton[]){
             var hotnames=[];
             var itemValues=[];
             let items:any[]=publisher.data;
@@ -70,7 +70,7 @@ export default class ConsultationComponent {
         let self = this;
         this.api.exec(ApiConfig.StatisticsConsultation, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
-            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
+            self.tableParams=new self.ngTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
         });
             
     }
@@ -81,4 +81,4 @@ export default class ConsultationComponent {
         };
     }
 }
-ConsultationComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel"];
+ConsultationComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel","NgTableParams"];

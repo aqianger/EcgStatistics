@@ -33,5 +33,6 @@ function config(locationProvider, stateProvider, urlRouterProvider) {
 }
 
 config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
-export const baseUrl:string="/statistics/";
+//export const baseUrl:string="/statistics/";
+export const baseUrl:string="/";
 export default config;

@@ -20,7 +20,7 @@ export default class DrWorkloadComponent {
    * @param api 
    * @param $scope 
    */
-    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel) {
+    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel,private ngTableParams:NgTableParams) {
 this.cacheDic={};
     }
 
@@ -31,7 +31,7 @@ this.cacheDic={};
     subscribeToTable(param:any){
         if (!param) return;
         let self=this;
-      let  PageChanded=function(publisher: NgTableParams<any>, newPages: IPageButton[], oldPages: IPageButton[]){
+      let  PageChanded=function(publisher: NgTableParams, newPages: IPageButton[], oldPages: IPageButton[]){
             let items:any[]=publisher.data;
             var hotnames=[];
              var itemValues=[];
@@ -157,7 +157,7 @@ XLSX.writeFile(wb, self.seriesTitle+td.getFullYear()+(td.getMonth()+1).toString(
         this.api.exec(ApiConfig.StatisticsDrworkload, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
             self.cacheDic={};
-            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
+            self.tableParams=new self.ngTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
              
          });
     };
@@ -189,4 +189,4 @@ XLSX.writeFile(wb, self.seriesTitle+td.getFullYear()+(td.getMonth()+1).toString(
         };
     }
 }
-DrWorkloadComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel"];
+DrWorkloadComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel","NgTableParams"];

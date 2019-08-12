@@ -15,7 +15,7 @@ export default class PositiveRateComponent {
    * @param api 
    * @param $scope 
    */
-    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel) {
+    constructor(private api: ApiService,private $scope:any,private ngtableEventsChannel:NgTableEventsChannel,private ngTableParams:NgTableParams) {
 
     }
 
@@ -25,7 +25,7 @@ export default class PositiveRateComponent {
     subscribeToTable(param:any){
         if (!param) return;
         let self=this;
-      let  PageChanded=function(publisher: NgTableParams<any>, newPages: IPageButton[], oldPages: IPageButton[]){
+      let  PageChanded=function(publisher: NgTableParams, newPages: IPageButton[], oldPages: IPageButton[]){
         let items:any[]=publisher.data;
         var hotnames=[];
         var itemValues=[];
@@ -72,7 +72,7 @@ export default class PositiveRateComponent {
         let self = this;
         this.api.exec(ApiConfig.StatisticsPositiveRate, {startDate:startDate, endDate:endDate}).then(function (result: any) {
             // console.log(result,self.$scope);
-            self.tableParams=new NgTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
+            self.tableParams=new self.ngTableParams({count: 15},{counts: [10, 15, 30,40],dataset:result});
          
             
          });
@@ -89,4 +89,4 @@ export default class PositiveRateComponent {
         };
     }
 }
-PositiveRateComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel"];
+PositiveRateComponent.$inject = ['apiService', '$scope',"ngTableEventsChannel","NgTableParams"];
